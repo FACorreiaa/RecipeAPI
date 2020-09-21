@@ -10,7 +10,7 @@ export const RecipeSchema = new mongoose.Schema({
   upvotes: { type: Number },
   likes: { type: Number },
   image: { type: String },
-  calories: { type: String },
+  calories: { type: Number },
   protein: { type: String },
   carbs: { type: String },
   fat: { type: String },
@@ -20,13 +20,13 @@ export interface Recipe extends mongoose.Document {
   title: string;
   author: string;
   body: string;
-  ingredients: string;
+  ingredients: string[];
   date: Date;
   comments: [{ body: string; date: Date }];
   upvotes: number;
   likes: number;
   image: string;
-  calories: string;
+  calories: number;
   protein: string;
   carbs: string;
   fat: string;

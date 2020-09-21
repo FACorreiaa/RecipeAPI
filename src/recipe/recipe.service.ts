@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { MacrosService } from 'src/macros/macros.service';
 
 import { Recipe } from './recipe.model';
 
@@ -8,13 +9,14 @@ import { Recipe } from './recipe.model';
 export class RecipeService {
   constructor(
     @InjectModel('Recipe') private readonly recipeModel: Model<Recipe>,
+    private macroService: MacrosService,
   ) {}
 
   async insertRecipe(
     title: string,
     author: string,
     body: string,
-    ingredients: string,
+    ingredients: string[],
     comments: [string, Date],
     upvotes: number,
     likes: number,
@@ -41,7 +43,9 @@ export class RecipeService {
       carbs,
       fat,
     });
+
     const result = await newRecipe.save();
+
     return result.id as string;
   }
 
@@ -89,6 +93,17 @@ export class RecipeService {
       date,
     });
     const result = await updatedComment.save();
+    return result;
+  }
+
+  async updateIngredient(id: string, ingredient: string) {
+    const updateIngredient = await this.findRecipe(id);
+    updateIngredient.ingredients.push(ingredient);
+
+    const value = await this.macroService.getAllNutrients(ingredient);
+    updateIngredient.calories += value.calories;
+
+    const result = await updateIngredient.save();
     return result;
   }
 

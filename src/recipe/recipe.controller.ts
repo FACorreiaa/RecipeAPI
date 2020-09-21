@@ -10,7 +10,7 @@ export class RecipeController {
     @Body('title') recipeTitle: string,
     @Body('author') recipeAuthor: string,
     @Body('body') recipeBody: string,
-    @Body('ingredients') recipeIngredient: string,
+    @Body('ingredients') recipeIngredient: string[],
     @Body('comments') recipeComments: [string, Date],
     @Body('upvotes') recipeUpvotes: number,
     @Body('likes') recipeLikes: number,
@@ -57,6 +57,20 @@ export class RecipeController {
       recipeId,
       recipeBody,
     );
+    return { id: generatedId };
+  }
+
+  //updateIngredient
+  @Post('ingredient/:id')
+  async addIngredient(
+    @Param('id') recipeId: string,
+    @Body('ingredient') recipeIngredient: string,
+  ) {
+    const generatedId = await this.recipeService.updateIngredient(
+      recipeId,
+      recipeIngredient,
+    );
+    console.log(generatedId);
     return { id: generatedId };
   }
 }

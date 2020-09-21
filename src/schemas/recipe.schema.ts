@@ -10,7 +10,7 @@ export class Recipe extends Document {
   @Prop()
   body: string;
   @Prop()
-  ingredients: string;
+  ingredients: [string];
   @Prop()
   date: { type: Date; default: Date };
   @Prop()
@@ -22,7 +22,7 @@ export class Recipe extends Document {
   @Prop()
   image: string;
   @Prop()
-  calories: string;
+  calories: number;
   @Prop()
   protein: string;
   @Prop()
