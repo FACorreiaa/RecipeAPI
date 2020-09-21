@@ -1,6 +1,6 @@
 ## Description
 
-Recipe App using: [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Recipe API using: [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 Work in progress
 
 ## Installation
