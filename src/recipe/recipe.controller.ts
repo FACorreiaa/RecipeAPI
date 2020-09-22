@@ -15,10 +15,10 @@ export class RecipeController {
     @Body('upvotes') recipeUpvotes: number,
     @Body('likes') recipeLikes: number,
     @Body('image') recipeImage: string,
-    @Body('calories') recipeCalories: string,
-    @Body('protein') recipeProtein: string,
-    @Body('carbs') recipeCarbs: string,
-    @Body('fat') recipeFat: string,
+    @Body('calories') recipeCalories: number,
+    @Body('protein') recipeProtein: number,
+    @Body('carbs') recipeCarbs: number,
+    @Body('fat') recipeFat: number,
   ) {
     const generatedId = await this.recipeService.insertRecipe(
       recipeTitle,

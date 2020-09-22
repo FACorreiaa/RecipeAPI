@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { MacrosService } from 'src/macros/macros.service';
 
-import { Recipe } from './recipe.model';
+import { Recipe } from '../schemas/recipe.schema';
 
 @Injectable()
 export class RecipeService {
@@ -21,10 +21,10 @@ export class RecipeService {
     upvotes: number,
     likes: number,
     image: string,
-    calories: string,
-    protein: string,
-    carbs: string,
-    fat: string,
+    calories: number,
+    protein: number,
+    carbs: number,
+    fat: number,
   ) {
     const date: Date = new Date();
 
@@ -100,9 +100,49 @@ export class RecipeService {
     const updateIngredient = await this.findRecipe(id);
     updateIngredient.ingredients.push(ingredient);
 
-    const value = await this.macroService.getAllNutrients(ingredient);
+    /*const value = await this.macroService.getAllNutrients(ingredient);
     updateIngredient.calories += value.calories;
-
+    
+    updateIngredient.protein += parseFloat(
+      value.totalNutrients.PROCNT.quantity,
+    ); 
+    updateIngredient.carbs += parseFloat(value.totalNutrients.CHOCDF.quantity);
+    updateIngredient.fat += parseFloat(value.totalNutrients.FAT.quantity);
+    
+    updateIngredient.satFat += parseFloat(value.totalNutrients.FASAT.quantity);
+    updateIngredient.monoFat += parseFloat(value.totalNutrients.FAMS.quantity);
+    updateIngredient.poliFat += parseFloat(value.totalNutrients.FAPU.quantity);
+    updateIngredient.fiber += parseFloat(value.totalNutrients.FIBTG.quantity);
+    updateIngredient.sugar += parseFloat(value.totalNutrients.SUGAR.quantity);
+    updateIngredient.cholesterol += parseFloat(
+      value.totalNutrients.CHOLE.quantity,
+    );
+    updateIngredient.sodium += parseFloat(value.totalNutrients.NA.quantity);
+    updateIngredient.calcium += parseFloat(value.totalNutrients.CA.quantity);
+    updateIngredient.magnesium += parseFloat(value.totalNutrients.MG.quantity);
+    updateIngredient.pot += parseFloat(value.totalNutrients.K.quantity);
+    updateIngredient.iron += parseFloat(value.totalNutrients.FE.quantity);
+    updateIngredient.zinc += parseFloat(value.totalNutrients.ZN.quantity);
+    updateIngredient.phosphrous += parseFloat(value.totalNutrients.P.quantity);
+    updateIngredient.vitaA += parseFloat(
+      value.totalNutrients.VITA_RAE.quantity,
+    );
+    updateIngredient.vitaC += parseFloat(value.totalNutrients.VITC.quantity);
+    updateIngredient.thiamin += parseFloat(value.totalNutrients.THIA.quantity);
+    updateIngredient.riboflavin += parseFloat(
+      value.totalNutrients.RIBF.quantity,
+    );
+    updateIngredient.niacin += parseFloat(value.totalNutrients.NIA.quantity);
+    updateIngredient.vitaB6 += parseFloat(value.totalNutrients.VITB6A.quantity);
+    updateIngredient.fold += parseFloat(value.totalNutrients.FOLDFE.quantity);
+    updateIngredient.vitaB12 += parseFloat(
+      value.totalNutrients.VITB12.quantity,
+    );
+    updateIngredient.vitaD += parseFloat(value.totalNutrients.VITD.quantity);
+    updateIngredient.vitaE += parseFloat(value.totalNutrients.TOCPHA.quantity);
+    updateIngredient.vitaK += parseFloat(value.totalNutrients.VITK1.quantity);
+    updateIngredient.water += parseFloat(value.totalNutrients.WATER.quantity);
+      */
     const result = await updateIngredient.save();
     return result;
   }
