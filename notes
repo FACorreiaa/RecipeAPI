@@ -1,0 +1,15 @@
+docker push a11199/recipelist:latest
+npm run docker:build
+heroku container:login
+heroku auth:token
+docker login --username=a11199 --password=fb179967-341a-4bf0-8be6-27814684b24e registry.heroku.com
+heroku container:push web --app 
+peaceful-cove-64859
+heroku container:release web --app peaceful-cove-64859
+heroku open --app peaceful-cove-64859
+
+------
+
+docker build -t registry.heroku.com/peaceful-cove-64859/web .
+docker push registry.heroku.com/peaceful-cove-64859
+heroku container:release web -a peaceful-cove-64859
