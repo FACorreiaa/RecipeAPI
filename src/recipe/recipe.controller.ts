@@ -8,6 +8,7 @@ export class RecipeController {
   @Post()
   async addRecipe(
     @Body('title') recipeTitle: string,
+    @Body('type') recipeType: string,
     @Body('author') recipeAuthor: string,
     @Body('body') recipeBody: string,
     @Body('ingredients') recipeIngredient: string[],
@@ -22,6 +23,7 @@ export class RecipeController {
   ) {
     const generatedId = await this.recipeService.insertRecipe(
       recipeTitle,
+      recipeType,
       recipeAuthor,
       recipeBody,
       recipeIngredient,

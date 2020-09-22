@@ -14,6 +14,7 @@ export class RecipeService {
 
   async insertRecipe(
     title: string,
+    type: string,
     author: string,
     body: string,
     ingredients: string[],
@@ -30,6 +31,7 @@ export class RecipeService {
 
     const newRecipe = new this.recipeModel({
       title,
+      type,
       author,
       body,
       ingredients,

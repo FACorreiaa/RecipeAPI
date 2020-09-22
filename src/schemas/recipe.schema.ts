@@ -6,6 +6,8 @@ export class Recipe extends Document {
   @Prop()
   title: string;
   @Prop()
+  type: string;
+  @Prop()
   author: string;
   @Prop()
   body: string;
