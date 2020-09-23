@@ -3,10 +3,9 @@ npm run docker:build
 heroku container:login
 heroku auth:token
 docker login --username=a11199 --password=fb179967-341a-4bf0-8be6-27814684b24e registry.heroku.com
-heroku container:push web --app peaceful-cove-64859
-heroku container:release web --app peaceful-cove-64859
-heroku open --app peaceful-cove-64859
-
+heroku container:push web --app obscure-river-28733
+heroku container:release web --app obscure-river-28733
+heroku open --app obscure-river-28733
 ------
 
 docker build -t registry.heroku.com/peaceful-cove-64859/web .

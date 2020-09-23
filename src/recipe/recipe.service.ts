@@ -73,7 +73,10 @@ export class RecipeService {
       calories: recipe.calories,
       protein: recipe.protein,
       carbs: recipe.carbs,
-      fat: recipe.fat,
+      fiber: recipe.fiber,
+      sugar: recipe.sugar,
+      sodium: recipe.sodium,
+      water: recipe.water,
       calcium: recipe.calcium,
     }));
   }
