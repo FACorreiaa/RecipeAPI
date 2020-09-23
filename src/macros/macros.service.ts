@@ -14,8 +14,8 @@ export class MacrosService {
 
   async getAllNutrients(ingr: string) {
     const headersRequest = {
-      'x-rapidapi-host': `${process.env.HOST}`,
-      'x-rapidapi-key': `${process.env.KEY}`,
+      'x-rapidapi-host': 'edamam-edamam-nutrition-analysis.p.rapidapi.com',
+      'x-rapidapi-key': '5664b75c9fmsh66ac8e054422eb9p1600b8jsn878d097e8d2a',
       useQueryString: true,
     };
     /*const result = await this.httpService.get(

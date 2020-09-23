@@ -26,6 +26,10 @@ export class RecipeService {
     protein: number,
     carbs: number,
     fat: number,
+    fiber: number,
+    sugar: number,
+    sodium: number,
+    water: number,
   ) {
     const date: Date = new Date();
 
@@ -44,6 +48,10 @@ export class RecipeService {
       protein,
       carbs,
       fat,
+      fiber,
+      sugar,
+      sodium,
+      water,
     });
 
     const result = await newRecipe.save();
@@ -66,6 +74,7 @@ export class RecipeService {
       protein: recipe.protein,
       carbs: recipe.carbs,
       fat: recipe.fat,
+      calcium: recipe.calcium,
     }));
   }
 
@@ -84,6 +93,7 @@ export class RecipeService {
       protein: recipe.protein,
       carbs: recipe.carbs,
       fat: recipe.fat,
+      calcium: recipe.calcium,
     };
   }
 
@@ -101,16 +111,19 @@ export class RecipeService {
   async updateIngredient(id: string, ingredient: string) {
     const updateIngredient = await this.findRecipe(id);
     updateIngredient.ingredients.push(ingredient);
-
-    /*const value = await this.macroService.getAllNutrients(ingredient);
+    console.log('ingredient', ingredient);
+    const value = await this.macroService.getAllNutrients(ingredient);
+    console.log('value', value);
     updateIngredient.calories += value.calories;
-    
+
     updateIngredient.protein += parseFloat(
       value.totalNutrients.PROCNT.quantity,
-    ); 
+    );
     updateIngredient.carbs += parseFloat(value.totalNutrients.CHOCDF.quantity);
     updateIngredient.fat += parseFloat(value.totalNutrients.FAT.quantity);
-    
+    updateIngredient.sodium += parseInt(value.totalNutrients.NA.quantity);
+
+    /*
     updateIngredient.satFat += parseFloat(value.totalNutrients.FASAT.quantity);
     updateIngredient.monoFat += parseFloat(value.totalNutrients.FAMS.quantity);
     updateIngredient.poliFat += parseFloat(value.totalNutrients.FAPU.quantity);
@@ -144,7 +157,7 @@ export class RecipeService {
     updateIngredient.vitaE += parseFloat(value.totalNutrients.TOCPHA.quantity);
     updateIngredient.vitaK += parseFloat(value.totalNutrients.VITK1.quantity);
     updateIngredient.water += parseFloat(value.totalNutrients.WATER.quantity);
-      */
+    */
     const result = await updateIngredient.save();
     return result;
   }
@@ -154,7 +167,6 @@ export class RecipeService {
     let recipe;
     try {
       recipe = await this.recipeModel.findById(id).exec();
-      console.log(recipe);
     } catch (error) {
       throw new NotFoundException('could not find recipe');
     }

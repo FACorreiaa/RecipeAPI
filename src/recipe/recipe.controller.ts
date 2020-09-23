@@ -20,6 +20,35 @@ export class RecipeController {
     @Body('protein') recipeProtein: number,
     @Body('carbs') recipeCarbs: number,
     @Body('fat') recipeFat: number,
+    @Body('fiber') recipeFiber: number,
+    @Body('sugar') recipeSugar: number,
+    @Body('sodium') recipeSodium: number,
+    @Body('water') recipeWater: number,
+
+    /*@Body('satFat') recipeSatFat: number,
+    @Body('monoFat') recipeMonoFat: number,
+    @Body('poliFat') recipePoliFat: number,
+    @Body('fiber') recipeFiber: number,
+    @Body('sugar') recipeSugar: number,
+    @Body('cholesterol') recipeMonoFat: number,
+    @Body('sodium') recipeMonoFat: number,
+    @Body('calcium') recipeMonoFat: number,
+    @Body('mangesium') recipeMonoFat: number,
+    @Body('pot') recipeMonoFat: number,
+    @Body('iron') recipeMonoFat: number,
+    @Body('zinc') recipeMonoFat: number,
+    @Body('phosphrous') recipeMonoFat: number,
+    @Body('vitaA') recipeMonoFat: number,
+    @Body('vitaC') recipeMonoFat: number,
+    @Body('thiamin') recipeMonoFat: number,
+    @Body('riboflavin') recipeMonoFat: number,
+    @Body('niacin') recipeMonoFat: number,
+    @Body('vitaB6') recipeMonoFat: number,
+    @Body('fold') recipeMonoFat: number,
+    @Body('vitaB12') recipeMonoFat: number,
+    @Body('vitaE') recipeMonoFat: number,
+    @Body('vitaK') recipeMonoFat: number,
+    @Body('water') recipeWater: number*/
   ) {
     const generatedId = await this.recipeService.insertRecipe(
       recipeTitle,
@@ -35,6 +64,10 @@ export class RecipeController {
       recipeProtein,
       recipeCarbs,
       recipeFat,
+      recipeFiber,
+      recipeSugar,
+      recipeSodium,
+      recipeWater,
     );
     return { id: generatedId };
   }

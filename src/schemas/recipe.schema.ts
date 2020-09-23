@@ -46,7 +46,7 @@ export class Recipe extends Document {
   @Prop()
   sodium: number;
   @Prop()
-  calcium: number;
+  calcium: { type: number; default: 0 };
   @Prop()
   magnesium: number;
   @Prop()
