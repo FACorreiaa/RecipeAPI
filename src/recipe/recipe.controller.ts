@@ -12,7 +12,6 @@ export class RecipeController {
     @Body('author') recipeAuthor: string,
     @Body('body') recipeBody: string,
     @Body('ingredients') recipeIngredient: string[],
-    @Body('comments') recipeComments: [string, Date],
     @Body('upvotes') recipeUpvotes: number,
     @Body('likes') recipeLikes: number,
     @Body('image') recipeImage: string,
@@ -56,7 +55,6 @@ export class RecipeController {
       recipeAuthor,
       recipeBody,
       recipeIngredient,
-      recipeComments,
       recipeUpvotes,
       recipeLikes,
       recipeImage,
@@ -83,7 +81,7 @@ export class RecipeController {
     return this.recipeService.getSingleRecipe(recipeId);
   }
 
-  @Post(':id')
+  @Post('comment/:id')
   async addComment(
     @Param('id') recipeId: string,
     @Body('body') recipeBody: string,
@@ -93,6 +91,11 @@ export class RecipeController {
       recipeBody,
     );
     return { id: generatedId };
+  }
+
+  @Post('like/:id')
+  async addLike(@Param('id') recipeId: string) {
+    const generateId = await this.recipeService.updateLike(recipeId);
   }
 
   //updateIngredient

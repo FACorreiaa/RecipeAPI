@@ -18,7 +18,6 @@ export class RecipeService {
     author: string,
     body: string,
     ingredients: string[],
-    comments: [string, Date],
     upvotes: number,
     likes: number,
     image: string,
@@ -40,7 +39,6 @@ export class RecipeService {
       body,
       ingredients,
       date,
-      comments,
       upvotes,
       likes,
       image,
@@ -78,6 +76,7 @@ export class RecipeService {
       sodium: recipe.sodium,
       water: recipe.water,
       calcium: recipe.calcium,
+      date: recipe.date,
     }));
   }
 
@@ -108,6 +107,13 @@ export class RecipeService {
       date,
     });
     const result = await updatedComment.save();
+    return result;
+  }
+
+  async updateLike(id: string) {
+    const updateLike = await this.findRecipe(id);
+    updateLike.likes += 1;
+    const result = await updateLike.save();
     return result;
   }
 
