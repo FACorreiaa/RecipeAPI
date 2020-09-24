@@ -120,9 +120,7 @@ export class RecipeService {
   async updateIngredient(id: string, ingredient: string) {
     const updateIngredient = await this.findRecipe(id);
     updateIngredient.ingredients.push(ingredient);
-    console.log('ingredient', ingredient);
     const value = await this.macroService.getAllNutrients(ingredient);
-    console.log('value', value);
     updateIngredient.calories += value.calories;
 
     updateIngredient.protein += parseFloat(
@@ -172,7 +170,6 @@ export class RecipeService {
   }
 
   private async findRecipe(id: string): Promise<Recipe> {
-    console.log(id);
     let recipe;
     try {
       recipe = await this.recipeModel.findById(id).exec();

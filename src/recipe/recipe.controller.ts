@@ -108,7 +108,6 @@ export class RecipeController {
       recipeId,
       recipeIngredient,
     );
-    console.log(generatedId);
     return { id: generatedId };
   }
 }

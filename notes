@@ -8,6 +8,6 @@ heroku container:release web --app obscure-river-28733
 heroku open --app obscure-river-28733
 ------
 
-docker build -t registry.heroku.com/peaceful-cove-64859/web .
-docker push registry.heroku.com/peaceful-cove-64859
+docker build -t registry.heroku.com/obscure-river-28733/web .
+docker push registry.heroku.com/obscure-river-28733
 heroku container:release web -a peaceful-cove-64859
