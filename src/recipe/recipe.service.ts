@@ -62,6 +62,7 @@ export class RecipeService {
       title: recipe.title,
       author: recipe.author,
       body: recipe.body,
+      type: recipe.type,
       ingredients: recipe.ingredients,
       comments: recipe.comments,
       likes: recipe.likes,
