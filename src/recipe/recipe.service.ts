@@ -70,6 +70,7 @@ export class RecipeService {
       calories: recipe.calories,
       protein: recipe.protein,
       carbs: recipe.carbs,
+      fat: recipe.fat,
       fiber: recipe.fiber,
       sugar: recipe.sugar,
       sodium: recipe.sodium,
@@ -120,6 +121,8 @@ export class RecipeService {
     const updateIngredient = await this.findRecipe(id);
     updateIngredient.ingredients.push(ingredient);
     const value = await this.macroService.getAllNutrients(ingredient);
+    console.log(updateIngredient);
+    console.log(value);
     updateIngredient.calories += value.calories;
 
     updateIngredient.protein += parseFloat(

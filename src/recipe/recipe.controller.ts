@@ -94,6 +94,7 @@ export class RecipeController {
   @Post('like/:id')
   async addLike(@Param('id') recipeId: string) {
     const generateId = await this.recipeService.updateLike(recipeId);
+    return generateId;
   }
 
   //updateIngredient
